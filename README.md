@@ -1,7 +1,7 @@
 ## 🌌 Overview
 This project is a fun experiment to explore the feasibility of real-time AI interactions similar to those portrayed in 'gemini-pro vision'.
 
-[See detailed explanation in this article](https://medium.com/p/fc559c38bd24)
+https://www.youtube.com/watch?v=Bf1zaKUMKeQ
 
 ## ✨ Demo
 
