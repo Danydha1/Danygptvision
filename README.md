@@ -1,11 +1,5 @@
-# GPT Video - Reproducing the Gemini demo using GPT 4 Vision
-
-![Screenshot of the App](/screenshot.jpg)
-
 ## 🌌 Overview
-
-After seeing the 'gemini' video, I asked myself: Could the 'gemini' experience showcased by Google be more than just a scripted demo?
-This project is a fun experiment to explore the feasibility of real-time AI interactions similar to those portrayed in 'gemini'.
+This project is a fun experiment to explore the feasibility of real-time AI interactions similar to those portrayed in 'gemini-pro vision'.
 
 [See detailed explanation in this article](https://medium.com/p/fc559c38bd24)
 
