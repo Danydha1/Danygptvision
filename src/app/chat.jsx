@@ -8,7 +8,7 @@ import mergeImages from "merge-images";
 import { useLocalStorage } from "../lib/use-local-storage";
 
 const INTERVAL = 250;
-const IMAGE_WIDTH = 512;
+const IMAGE_WIDTH = 600;
 const IMAGE_QUALITY = 0.6;
 const COLUMNS = 4;
 const MAX_SCREENSHOTS = 60;
@@ -356,30 +356,78 @@ export default function Chat() {
             )}
           </div>
         </div>
-        <div className="fixed bottom-4 right-4 flex gap-2">
-        <input
-          type="password"
-          className="px-4 py-2 rounded-md text-black"
-          value={token}
-          placeholder="OpenAI API key"
-          onChange={(e) => setToken(e.target.value)}
-          style={{ backgroundColor: '#fff' }} // Added a white background color
-        />
-        {isStarted ? (
+        <div className="flex flex-wrap justify-center p-4 opacity-50 gap-2">
+          {isStarted ? (
+            <button
+              className="px-4 py-2 bg-gray-700 rounded-md disabled:opacity-50"
+              onClick={stopRecording}
+            >
+              Stop session
+            </button>
+          ) : (
+            <button
+              className="px-4 py-2 bg-gray-700 rounded-md disabled:opacity-50"
+              onClick={startRecording}
+            >
+              Start session
+            </button>
+          )}
           <button
-            className="px-6 py-2 rounded-md text-white bg-red-500 hover:bg-red-700 transition"
-            onClick={stopRecording}
+            className="px-4 py-2 bg-gray-700 rounded-md disabled:opacity-50"
+            onClick={() => reload()}
           >
-            Stop session
+            Regenerate
           </button>
-        ) : (
           <button
-            className="px-6 py-2 rounded-md text-white bg-green-500 hover:bg-green-700 transition"
-            onClick={startRecording}
+            className="px-4 py-2 bg-gray-700 rounded-md disabled:opacity-50"
+            onClick={() => setDisplayDebug((p) => !p)}
           >
-            Start session
+            Debug
           </button>
-        )}
+          <input
+            type="password"
+            className="px-4 py-2 bg-gray-700 rounded-md"
+            value={token}
+            placeholder="OpenAI API key"
+            onChange={(e) => setToken(e.target.value)}
+          />
+          <input
+            className="px-4 py-2 bg-gray-700 rounded-md"
+            value={lang}
+            placeholder="Optional language code"
+            onChange={(e) => setLang(e.target.value)}
+          />
+        </div>
+      </div>
+      <div
+        className={`bg-[rgba(20,20,20,0.8)] backdrop-blur-xl p-8 rounded-sm absolute left-0 top-0 bottom-0 transition-all w-[75vw] sm:w-[33vw] ${
+          displayDebug ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div
+          className="absolute z-10 top-4 right-4 opacity-50 cursor-pointer"
+          onClick={() => setDisplayDebug(false)}
+        >
+          ⛌
+        </div>
+        <div className="space-y-8">
+          <div className="space-y-2">
+            <div className="font-semibold opacity-50">Phase:</div>
+            <p>{phase}</p>
+          </div>
+          <div className="space-y-2">
+            <div className="font-semibold opacity-50">Transcript:</div>
+            <p>{transcription || "--"}</p>
+          </div>
+          <div className="space-y-2">
+            <div className="font-semibold opacity-50">Captures:</div>
+            <img
+              className="object-contain w-full border border-gray-500"
+              alt="Grid"
+              src={imagesGridUrl || transparentPixel}
+            />
+          </div>
+        </div>
       </div>
     </>
   );
